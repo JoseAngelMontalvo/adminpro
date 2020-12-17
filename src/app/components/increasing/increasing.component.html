@@ -1,0 +1,10 @@
+<h3>{{leyenda}} - {{progress}}</h3>
+<div class="input-group mb-3">
+    <button class="btn btn-outline-primary" type="button" (click)="changeValue(-5)"><i
+            class="mdi mdi-minus"></i></button>
+    <input #txtProgress type="number" class="form-control" placeholder=""
+        aria-label="Example text with two button addons" name="progreso" [(ngModel)]="progress"
+        (ngModelChange)="onChange($event)" min="1" max="100">
+    <button class="btn btn-outline-primary" type="button" (click)="changeValue(+5)"><i
+            class="mdi mdi-plus"></i></button>
+</div>
