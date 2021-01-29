@@ -20,7 +20,9 @@
                     <!-- dark Logo text -->
                     <img src="assets/images/logo-text.png" alt="homepage" class="dark-logo" />
                     <!-- Light Logo text -->
-                    <img src="assets/images/logo-light-text.png" class="light-logo" alt="homepage" /></span> </a>
+                    <img src="assets/images/logo-light-text.png" class="light-logo" alt="homepage" />
+                </span>
+            </a>
         </div>
         <!-- ============================================================== -->
         <!-- End Logo -->
@@ -49,7 +51,8 @@
                             class="ti-search"></i></a>
                     <form class="app-search">
                         <input type="text" class="form-control" placeholder="Search & enter"> <a class="srh-btn"><i
-                                class="ti-close"></i></a> </form>
+                                class="ti-close"></i></a>
+                    </form>
                 </li>
                 <!-- ============================================================== -->
                 <!-- Messages -->
@@ -156,7 +159,8 @@
                             <li role="separator" class="divider"></li>
                             <li><a href="#"><i class="ti-settings"></i> Account Setting</a></li>
                             <li role="separator" class="divider"></li>
-                            <li><a href="#"><i class="fa fa-power-off"></i> Logout</a></li>
+                            <li><a (click)="_usersService.logOut()" class="pointer"><i class="fa fa-power-off"></i>
+                                    Logout</a></li>
                         </ul>
                     </div>
                 </li>
