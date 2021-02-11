@@ -4,12 +4,18 @@ import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { URL_SERVICE } from '../../config/config';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
+import { UploadFileService } from '../uploadFile/upload-file.service';
 
 @Injectable()
 export class UsersService {
   user: User;
   token: string;
-  constructor(public http: HttpClient, public router: Router) {
+  constructor(
+    public http: HttpClient,
+    public router: Router,
+    public _uploadFileService: UploadFileService
+  ) {
     this.getStorage();
     console.log('servicio de User listo');
   }
@@ -65,5 +71,37 @@ export class UsersService {
         return true;
       })
     );
+  }
+  saveProfile(user: User) {
+    const url = `${URL_SERVICE}/user/${user._id}?token=${this.token}`;
+    return this.http.put(url, user).pipe(
+      map((resp: any) => {
+        const userDB = resp.user;
+        this.saveLocalStorage(userDB._id, this.token, userDB);
+        Swal.fire({
+          title: 'Usuario actualizado',
+          text: user.name,
+          icon: 'success',
+        });
+        return true;
+      })
+    );
+  }
+  upDateImageProfileUser(image: File, id: string) {
+    this._uploadFileService
+      .uploadFile(image, 'users', id)
+      .then((resp: any) => {
+        this.user.img = resp.user.img;
+        this.saveLocalStorage(id, this.token, this.user);
+        Swal.fire({
+          title: 'Imagen de Profile actualizada',
+          text: this.user.name,
+          icon: 'success',
+        });
+        return true;
+      })
+      .catch((resp) => {
+        console.log(resp);
+      });
   }
 }

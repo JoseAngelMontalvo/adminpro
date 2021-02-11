@@ -8,6 +8,7 @@ import { AccountSettingsComponent } from './account-settings/account-settings.co
 import { PromiseComponent } from './promise/promise.component';
 import { RxjsComponent } from './rxjs/rxjs.component';
 import { LoginGuardsGuard } from '../services/service.index';
+import { ProfileComponent } from './profile/profile.component';
 
 const pagesRoutes: Routes = [
   {
@@ -58,6 +59,14 @@ const pagesRoutes: Routes = [
         data: {
           titulo: 'Rxjs',
           description: 'Ejemplo de rxjs Observables y operators',
+        },
+      },
+      {
+        path: 'profile',
+        component: ProfileComponent,
+        data: {
+          titulo: 'Profile',
+          description: 'Perfild e usuario',
         },
       },
       { path: '', pathMatch: 'full', redirectTo: '/dashboard' },
